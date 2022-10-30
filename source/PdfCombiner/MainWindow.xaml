@@ -1,0 +1,108 @@
+﻿<sf:RibbonWindow x:Class="PdfCombiner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sf="http://schemas.syncfusion.com/wpf"
+        xmlns:viewModel="clr-namespace:PdfCombiner.ViewModel"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:converters="clr-namespace:PdfCombiner.Wpf.Converters"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:services="clr-namespace:PdfCombiner.Wpf.Services"
+        Office2010Icon="Resources/Images/pdf_single.ico"
+        sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
+        mc:Ignorable="d" ShowHelpButton="False"
+        Title="PDF Combiner" Height="450" Width="800">
+
+    <sf:RibbonWindow.DataContext>
+        <viewModel:MainViewModel />
+    </sf:RibbonWindow.DataContext>
+
+    <sf:RibbonWindow.Resources>
+        <converters:GetReadableFileSizeConverter x:Key="FileSizeConverter" />
+
+        <Style x:Key="FilesGridStyle" TargetType="{x:Type sf:SfDataGrid}">
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="NavigationMode" Value="Row" />
+            <Setter Property="AllowEditing" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="AllowDraggingRows" Value="True" />
+            <Setter Property="AllowDrop" Value="True" />
+            <Setter Property="SelectionMode" Value="Extended" />
+            <Setter Property="RowDropIndicatorMode" Value="Line" />
+            <Setter Property="Margin" Value="0 5 0 0" />
+        </Style>
+    </sf:RibbonWindow.Resources>
+
+    <dxmvvm:Interaction.Behaviors>
+        <services:SfDataGridService Grid="{Binding ElementName=FilesGrid, Mode=OneWay}" />
+
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding Path=ViewLoadedCommand, Mode=OneTime}" />
+    </dxmvvm:Interaction.Behaviors>
+
+    <DockPanel>
+        <!--<Button Content="Test" Command="{Binding Path=TestCommand, Mode=OneTime}" />-->
+        <sf:Ribbon DockPanel.Dock="Top" LayoutMode="Normal" EnableSimplifiedLayoutMode="False" VerticalAlignment="Top" BackStage="{x:Null}" MinimizeButtonVisibility="Hidden">
+            <!-- Hide the 'File' button for the not existing backstage -->
+            <sf:Ribbon.BackStageButton>
+                <sf:BackStageButton Visibility="Collapsed" />
+            </sf:Ribbon.BackStageButton>
+
+            <sf:RibbonTab Caption="HOME" IsChecked="True">
+                <sf:RibbonBar Header="Actions" CollapseImage="{x:Null}" IsLauncherButtonVisible="False">
+                    <sf:RibbonButton SizeForm="Large" Label="Generate"
+                                     LargeIcon="{fa:IconSource Play, Foreground=White}"
+                                     Command="{Binding Path=CombinePdfFilesCommand, Mode=OneTime}" />
+
+                    <sf:RibbonButton Label="Add file"
+                                     Command="{Binding Path=AddFileCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource MagnifyingGlassPlus, Foreground=White, IconFont=Solid}"
+                                     MediumIcon="{fa:IconSource MagnifyingGlassPlus, Foreground=White, IconFont=Solid}"
+                                     SmallIcon="{fa:IconSource MagnifyingGlassPlus, Foreground=White, IconFont=Solid}" />
+
+                    <sf:RibbonButton Label="Remove file"
+                                     Command="{Binding Path=RemoveSelectedFilesCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource Minus, Foreground=White, IconFont=Solid}"
+                                     MediumIcon="{fa:IconSource Minus, Foreground=White, IconFont=Solid}"
+                                     SmallIcon="{fa:IconSource Minus, Foreground=White, IconFont=Solid}" />
+
+                    <sf:RibbonButton Label="Clear files"
+                                     Command="{Binding Path=RemoveAllFilesCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource Xmark, Foreground=White, IconFont=Solid}"
+                                     MediumIcon="{fa:IconSource Xmark, Foreground=White, IconFont=Solid}"
+                                     SmallIcon="{fa:IconSource Xmark, Foreground=White, IconFont=Solid}" />
+                </sf:RibbonBar>
+
+                <sf:RibbonBar Header="Extras"  CollapseImage="{x:Null}" IsLauncherButtonVisible="False">
+                    <sf:RibbonButton SizeForm="Large" Label="Settings"
+                                     Command="{Binding Path=SettingsCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource Gears, Foreground=White, IconFont=Solid}" />
+
+                    <sf:RibbonButton Label="Source code"
+                                     Command="{Binding Path=OpenGithubRepoCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}"
+                                     MediumIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}"
+                                     SmallIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}" />
+                </sf:RibbonBar>
+            </sf:RibbonTab>
+        </sf:Ribbon>
+
+        <DockPanel Margin="12">
+            <TextBlock Text="Add all PDFs you want to combine. You can re-order them by using drag and drop." DockPanel.Dock="Top" />
+
+            <sf:SfDataGrid x:Name="FilesGrid" Style="{StaticResource FilesGridStyle}"
+                           ItemsSource="{Binding Path=Files, Mode=OneWay}">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding Path=FilesGridSelectionChangedCommand, Mode=OneTime}" />
+                </dxmvvm:Interaction.Behaviors>
+
+                <sf:SfDataGrid.Columns>
+                    <sf:GridTextColumn HeaderText="File name" MappingName="FileName" ColumnSizer="Star" HorizontalHeaderContentAlignment="Left" />
+                    <sf:GridNumericColumn HeaderText="Size" MappingName="FileSize" Width="75" TextAlignment="Right" HorizontalHeaderContentAlignment="Left"
+                                          DisplayBinding="{Binding Path=FileSize, Mode=OneWay, Converter={StaticResource FileSizeConverter}}" />
+                    <sf:GridImageColumn ImageWidth="24" HeaderText="Valid PDF?" MappingName="ValidIcon" TextAlignment="Center" Width="75" />
+                </sf:SfDataGrid.Columns>
+            </sf:SfDataGrid>
+        </DockPanel>
+    </DockPanel>
+</sf:RibbonWindow>
