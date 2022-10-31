@@ -5,6 +5,7 @@ This small tool is currently available for Windows system and enables the user t
 Requires **.NET Framework 4.8** on Windows machines.
 
 ## Planned features
-- [ ] Rewrite for .NET 6
-- [ ] Multi language
+- [x] Multi language
+- [ ] MSI Setup
 - [ ] CLI solution
+- [ ] Rewrite for .NET 6
