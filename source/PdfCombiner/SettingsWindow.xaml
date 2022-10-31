@@ -9,10 +9,12 @@
         xmlns:services="clr-namespace:PdfCombiner.Wpf.Services"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:wpf="clr-namespace:PdfCombiner.Wpf"
+        xmlns:lang="clr-namespace:PdfCombiner.Resources.Language"
         sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
         mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize"
-        Icon="Resources/Images/pdf_single.ico" Title="Settings" WindowStartupLocation="CenterOwner"
-        Height="245" Width="600" x:Name="WindowInstance">
+        Icon="Resources/Images/pdf_single.ico" WindowStartupLocation="CenterOwner"
+        Height="245" Width="500" x:Name="WindowInstance"
+        Title="{x:Static lang:SettingsResource.WindowTitle}">
 
     <sf:ChromelessWindow.DataContext>
         <viewModel:SettingsViewModel />
@@ -31,14 +33,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0" Header="General settings" Padding="5">
+        <GroupBox Grid.Row="0" Header="{x:Static lang:SettingsResource.GroupGeneral}" Padding="5">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="20" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -48,42 +48,46 @@
                 </Grid.RowDefinitions>
 
                 <!-- Language -->
-                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Language" />
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.Language}" />
+
+                    <Image VerticalAlignment="Center" Source="{fa:IconSource TriangleExclamation, Foreground=Orange, Size=16, IconFont=Solid}"
+                           Visibility="{Binding Path=ShowLanguageChangedHint, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
+                           ToolTip="{x:Static lang:SettingsResource.LanguageRestartHint}" Margin="5 0 0 0" />
+                </StackPanel>
                 <sf:ComboBoxAdv Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
                                 ItemsSource="{Binding Path=AvailableLanguages, Mode=OneWay}"
                                 SelectedItem="{Binding Path=SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <Image Grid.Column="4" Grid.Row="0" VerticalAlignment="Center" Source="{fa:IconSource CircleExclamation, Foreground=Orange, Size=16, IconFont=Solid}"
-                       Visibility="{Binding Path=ShowLanguageChangedHint, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
-                       ToolTip="Restart required to apply the language change!" />
 
                 <!-- Optimize resources -->
-                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="Optimize resources?" />
+                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.OptimizeResources}" />
                 <CheckBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
                           IsChecked="{Binding Path=OptimizeResources, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.Row="2" Header="Information" Padding="5">
+        <GroupBox Grid.Row="2" Header="{x:Static lang:SettingsResource.GroupInformation}" Padding="5">
             <StackPanel>
-                <TextBlock>
-                    <Run Text="Version" />
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="{x:Static lang:SettingsResource.Version}" />
                     <Run Text="{Binding Path=CurrentVersion, Mode=OneWay}" />
                     <Run Text=" | " />
-                    <Run Text="Released under" />
+                    <Run Text="{x:Static lang:SettingsResource.ReleasedUnder}" />
                     <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryLicense}">
-                        <TextBlock Text="MIT license" />
+                        <TextBlock Text="{x:Static lang:SettingsResource.MitLicense}" />
                     </Hyperlink>
-                    <Run Text="- idea by" />
+                    <Run Text="-" />
+                    <Run Text="{x:Static lang:SettingsResource.IdeaBy}"></Run>
                     <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.AuthorWebsite}">
                         <TextBlock Text="Florian Berger" />
                     </Hyperlink><Run Text="." />
                 </TextBlock>
 
                 <TextBlock Margin="0 10 0 0">
-                    <Run Text="Feel free to contribute in the" />
+                    <Run Text="{x:Static lang:SettingsResource.Contribute}" />
                     <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryUri}">
-                        <TextBlock Text="GitHub repository" />
-                    </Hyperlink><Run Text="." />
+                        <TextBlock Text="{x:Static lang:SettingsResource.GithubRepo}" />
+                    </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </GroupBox>
@@ -94,12 +98,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" HorizontalAlignment="Left" Content="Show third party licenses" Padding="10 3"
+            <Button Grid.Column="0" HorizontalAlignment="Left" Content="{x:Static lang:SettingsResource.ShowThirdPartyLicenses}" Padding="10 3"
                     Command="{Binding Path=ShowThirdPartyLicensesCommand, Mode=OneTime}" />
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Padding="10 3" Content="Save" Command="{Binding Path=SaveCommand, Mode=OneTime}" />
-                <Button Padding="10 3" Content="Cancel" Margin="5 0 0 0" Command="{Binding Path=CancelCommand, Mode=OneTime}" />
+                <Button Padding="10 3" Content="{x:Static lang:SettingsResource.Save}" Command="{Binding Path=SaveCommand, Mode=OneTime}" />
+                <Button Padding="10 3" Content="{x:Static lang:SettingsResource.Cancel}" Margin="5 0 0 0" Command="{Binding Path=CancelCommand, Mode=OneTime}" />
             </StackPanel>
         </Grid>
     </Grid>

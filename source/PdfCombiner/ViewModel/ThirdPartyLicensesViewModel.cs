@@ -5,6 +5,9 @@ using System.Linq;
 using System.Reflection;
 using DevExpress.Mvvm;
 using PdfCombiner.Model;
+#if !DEBUG
+using PdfCombiner.Resources.Language;
+#endif
 
 namespace PdfCombiner.ViewModel
 {
@@ -105,7 +108,7 @@ namespace PdfCombiner.ViewModel
 #if DEBUG
             throw new InvalidOperationException($"Missing license file for {name}!");
 #else
-            return "- License text not found -";
+            return ThirdPartyLicensesResource.NoLicenseFileFound;
 #endif
         }
 

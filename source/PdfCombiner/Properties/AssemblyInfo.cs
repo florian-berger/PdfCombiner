@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PdfCombiner")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Small piece of software for combining multiple PDF files into one.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PdfCombiner")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright © 2022 Florian Berger")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

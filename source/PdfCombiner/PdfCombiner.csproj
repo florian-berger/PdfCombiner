@@ -148,6 +148,21 @@
     <Compile Include="Model\LanguageBinding.cs" />
     <Compile Include="Model\ThirdPartyLicenseBinding.cs" />
     <Compile Include="Resources\FontAwesomeImages.cs" />
+    <Compile Include="Resources\Language\MainWindowResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainWindowResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Language\SettingsResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingsResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Language\ThirdPartyLicensesResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThirdPartyLicensesResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -186,6 +201,21 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\MainWindowResource.de.resx" />
+    <EmbeddedResource Include="Resources\Language\MainWindowResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainWindowResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\SettingsResource.de.resx" />
+    <EmbeddedResource Include="Resources\Language\SettingsResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingsResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.de.resx" />
+    <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ThirdPartyLicensesResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -235,5 +265,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Licenses\Newtonsoft.Json.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

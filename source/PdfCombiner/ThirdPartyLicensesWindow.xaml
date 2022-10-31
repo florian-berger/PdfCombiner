@@ -8,9 +8,11 @@
                      xmlns:wpf="clr-namespace:PdfCombiner.Wpf"
                      xmlns:helper="clr-namespace:PdfCombiner.Helper"
                      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-                     mc:Ignorable="d" Title="Third party licenses" Height="500" Width="800" ResizeMode="NoResize"
+                     xmlns:lang="clr-namespace:PdfCombiner.Resources.Language"
+                     mc:Ignorable="d" Height="500" Width="800" ResizeMode="NoResize"
                      WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Icon="Resources/Images/pdf_single.ico"
-                     sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}">
+                     sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
+                     Title="{x:Static lang:ThirdPartyLicensesResource.WindowTitle}">
     <sf:ChromelessWindow.DataContext>
         <viewModel:ThirdPartyLicensesViewModel />
     </sf:ChromelessWindow.DataContext>
@@ -31,11 +33,11 @@
                         <TextBlock Grid.Row="0" Margin="0 0 0 0" Text="{Binding Path=Name, Mode=OneWay}" 
                                    FontWeight="Bold" FontSize="13" TextTrimming="CharacterEllipsis" />
                         <TextBlock Grid.Row="1" Margin="0 5 0 0" TextTrimming="CharacterEllipsis">
-                            <Run Text="Version" />
+                            <Run Text="{x:Static lang:ThirdPartyLicensesResource.SelectionVersion}" />
                             <Run Text="{Binding Path=Version, Mode=OneWay}" />
                         </TextBlock>
                         <TextBlock Grid.Row="2" Margin="0 5 0 0" TextTrimming="CharacterEllipsis">
-                            <Run Text="by" />
+                            <Run Text="{x:Static lang:ThirdPartyLicensesResource.SelectionBy}" />
                             <Run Text="{Binding Path=Author, Mode=OneWay}" />
                         </TextBlock>
                     </Grid>
@@ -54,14 +56,14 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Text="No third party selected" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Text="{x:Static lang:ThirdPartyLicensesResource.NothingSelectedTitle}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
 
                         <Grid Grid.Row="1" Margin="20">
                             <Ellipse Height="124" Width="124" Fill="#333231" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <Image Source="{fa:IconSource Stamp, Foreground=White, IconFont=Solid}" Height="64" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </Grid>
 
-                        <TextBlock Grid.Row="2" Text="Please select a third party from the left side to view its license." TextWrapping="Wrap"
+                        <TextBlock Grid.Row="2" Text="{x:Static lang:ThirdPartyLicensesResource.NothingSelectedDescription}" TextWrapping="Wrap"
                                    MaxWidth="180" HorizontalAlignment="Center" TextAlignment="Center" />
                     </Grid>
                 </Border>
@@ -83,20 +85,20 @@
                     
                     <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Path=SelectedLicense.Name, Mode=OneWay}" VerticalAlignment="Center"
                                helper:TextBlockUtils.AutoTooltip="True" />
-                    <Button Grid.Column="1" Content="Open website" Padding="10 3" VerticalAlignment="Center" 
+                    <Button Grid.Column="1" Content="{x:Static lang:ThirdPartyLicensesResource.LicenseOpenWebsite}" Padding="10 3" VerticalAlignment="Center" 
                             Visibility="{Binding Path=SelectedLicense.Uri, Mode=OneWay, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"
                             Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{Binding Path=SelectedLicense.Uri, Mode=OneWay}" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0 5 0 0">
                     <TextBlock TextWrapping="Wrap">
-                        <Run FontWeight="SemiBold" Text="Version:" />
+                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseVersion}" />
                         <Run Text="{Binding Path=SelectedLicense.Version, Mode=OneWay}" />
                         <Run Text=" | "></Run>
-                        <Run FontWeight="SemiBold" Text="License:" />
+                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseLicense}" />
                         <Run Text="{Binding Path=SelectedLicense.LicenseType, Mode=OneWay}" />
                         <Run Text=" | " />
-                        <Run FontWeight="SemiBold" Text="Author:" />
+                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseAuthor}" />
                         <Run Text="{Binding Path=SelectedLicense.Author, Mode=OneWay}" />
                     </TextBlock>
                 </Grid>
@@ -107,7 +109,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="License text" FontWeight="Medium" FontSize="15" />
+                    <TextBlock Text="{x:Static lang:ThirdPartyLicensesResource.LicenseLicenseText}" FontWeight="Medium" FontSize="15" />
                     <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 5 0 0" IsReadOnly="True"
                              IsReadOnlyCaretVisible="True" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"
                              VerticalScrollBarVisibility="Auto"

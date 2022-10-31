@@ -7,6 +7,8 @@ using DevExpress.Mvvm;
 using Microsoft.Win32;
 using PdfCombiner.Helper;
 using PdfCombiner.Model;
+using PdfCombiner.Resources.Language;
+using PdfCombiner.Wpf;
 using PdfCombiner.Wpf.Services;
 using Syncfusion.Pdf;
 using Syncfusion.UI.Xaml.Grid;
@@ -188,16 +190,15 @@ namespace PdfCombiner.ViewModel
 
             if (Files.Any(f => !f.IsValidPdfFile))
             {
-                MessageBox.Show(Application.Current.MainWindow,
-                    "There are files defined that are no valid PDF files. Please remove them and try again.",
-                    "Cannot combine PDFs", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Application.Current.MainWindow, MainWindowResource.InvalidFilesExisting,
+                    MainWindowResource.CannotCombineTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var targetFileDlg = new SaveFileDialog
             {
-                Filter = "Portable Document Format (*.pdf)|*.pdf",
-                Title = "Select the target file …",
+                Filter = MainWindowResource.PdfFilter,
+                Title = MainWindowResource.SelectTargetFile,
                 ValidateNames = true,
                 OverwritePrompt = true,
                 AddExtension = true
@@ -220,15 +221,15 @@ namespace PdfCombiner.ViewModel
             {
                 IsWorking = false;
                 MessageBox.Show(Application.Current.MainWindow,
-                    $"There was an error while combining the configured PDFs:{Environment.NewLine}{ex.Message}",
-                    "Error while combining", MessageBoxButton.OK, MessageBoxImage.Error);
+                    $"{MainWindowResource.ErrorCombiningDescription}{Environment.NewLine}{ex.Message}",
+                    MainWindowResource.ErrorCombiningTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             IsWorking = false;
             var result = MessageBox.Show(Application.Current.MainWindow,
-                "The PDFs were successfully merged. Do you want to open it in the default program?",
-                "Successfully merged", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MainWindowResource.SuccessfullyMergedDescription, MainWindowResource.SuccessfullyMergedTitle,
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -247,8 +248,8 @@ namespace PdfCombiner.ViewModel
         {
             var fileDlg = new OpenFileDialog
             {
-                Title = "Select a file …",
-                Filter = "Portable Document Format (*.pdf)|*.pdf|All files (*.*)|*.*",
+                Title = MainWindowResource.SelectFiles,
+                Filter = MainWindowResource.AddFilesFilter,
                 Multiselect = true
             };
 
@@ -319,7 +320,7 @@ namespace PdfCombiner.ViewModel
 
         private void OpenGithubRepo()
         {
-            Process.Start("https://github.com/florian-berger/PdfCombiner");
+            Process.Start(CombinerConstants.RepositoryUri);
         }
 
         private void ShowThirdPartyLicenses()
