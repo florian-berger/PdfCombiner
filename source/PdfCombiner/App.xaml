@@ -1,13 +1,18 @@
 ﻿<Application x:Class="PdfCombiner.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PdfCombiner"
+             xmlns:converters="clr-namespace:PdfCombiner.Wpf.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          <ResourceDictionary>
              <ResourceDictionary.MergedDictionaries>
                  <ResourceDictionary Source="Wpf/Styles/MessageBoxStyle.xaml" />
              </ResourceDictionary.MergedDictionaries>
+
+             <!-- Register all global converters -->
+             <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
+             <converters:NotNullToVisibilityConverter x:Key="NullToVisibilityConverterInverted" Inverted="True" />
+             <converters:StringNotEmptyToVisibilityConverter x:Key="StringNotEmptyToVisibilityConverter" />
          </ResourceDictionary>
     </Application.Resources>
 </Application>

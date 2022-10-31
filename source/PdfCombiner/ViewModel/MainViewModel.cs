@@ -125,6 +125,9 @@ namespace PdfCombiner.ViewModel
         public DelegateCommand OpenGithubRepoCommand => _openGithubRepoCommand ?? (_openGithubRepoCommand = new DelegateCommand(OpenGithubRepo));
         private DelegateCommand _openGithubRepoCommand;
 
+        public DelegateCommand ShowThirdPartyLicensesCommand => _showThirdPartyLicensesCommand ?? (_showThirdPartyLicensesCommand = new DelegateCommand(ShowThirdPartyLicenses));
+        private DelegateCommand _showThirdPartyLicensesCommand;
+
         #endregion Commands
 
         #region Private methods
@@ -309,6 +312,11 @@ namespace PdfCombiner.ViewModel
         private void OpenGithubRepo()
         {
             Process.Start("https://github.com/florian-berger/PdfCombiner");
+        }
+
+        private void ShowThirdPartyLicenses()
+        {
+            new ThirdPartyLicensesWindow().ShowDialog();
         }
 
         #endregion Private methods

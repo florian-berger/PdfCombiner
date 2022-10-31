@@ -73,7 +73,7 @@
                                      SmallIcon="{fa:IconSource Xmark, Foreground=White, IconFont=Solid}" />
                 </sf:RibbonBar>
 
-                <sf:RibbonBar Header="Extras"  CollapseImage="{x:Null}" IsLauncherButtonVisible="False">
+                <sf:RibbonBar Header="Extras" CollapseImage="{x:Null}" IsLauncherButtonVisible="False">
                     <sf:RibbonButton SizeForm="Large" Label="Settings"
                                      Command="{Binding Path=SettingsCommand, Mode=OneTime}"
                                      LargeIcon="{fa:IconSource Gears, Foreground=White, IconFont=Solid}" />
@@ -83,6 +83,12 @@
                                      LargeIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}"
                                      MediumIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}"
                                      SmallIcon="{fa:IconSource Github, Foreground=White, IconFont=Brands}" />
+
+                    <sf:RibbonButton Label="Third-party licenses"
+                                     Command="{Binding Path=ShowThirdPartyLicensesCommand, Mode=OneTime}"
+                                     LargeIcon="{fa:IconSource Stamp, Foreground=White, IconFont=Solid}"
+                                     MediumIcon="{fa:IconSource Stamp, Foreground=White, IconFont=Solid}"
+                                     SmallIcon="{fa:IconSource Stamp, Foreground=White, IconFont=Solid}" />
                 </sf:RibbonBar>
             </sf:RibbonTab>
         </sf:Ribbon>
