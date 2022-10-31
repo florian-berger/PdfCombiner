@@ -7,7 +7,8 @@
                      xmlns:viewModel="clr-namespace:PdfCombiner.ViewModel"
                      xmlns:wpf="clr-namespace:PdfCombiner.Wpf"
                      xmlns:helper="clr-namespace:PdfCombiner.Helper"
-                     mc:Ignorable="d" Title="Third-party licenses" Height="500" Width="800" ResizeMode="NoResize"
+                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+                     mc:Ignorable="d" Title="Third party licenses" Height="500" Width="800" ResizeMode="NoResize"
                      WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Icon="Resources/Images/pdf_single.ico"
                      sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}">
     <sf:ChromelessWindow.DataContext>
@@ -45,7 +46,25 @@
         <Grid Margin="12 0 0 0">
             <!-- Nothing selected -->
             <Grid Visibility="{Binding Path=SelectedLicense, Mode=OneWay, Converter={StaticResource NullToVisibilityConverterInverted}}">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="- Select a license to display details -" />
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#3b3a39" CornerRadius="10" Padding="30" Width="275">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="No third party selected" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
+
+                        <Grid Grid.Row="1" Margin="20">
+                            <Ellipse Height="124" Width="124" Fill="#333231" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Image Source="{fa:IconSource Stamp, Foreground=White, IconFont=Solid}" Height="64" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+
+                        <TextBlock Grid.Row="2" Text="Please select a third party from the left side to view its license." TextWrapping="Wrap"
+                                   MaxWidth="180" HorizontalAlignment="Center" TextAlignment="Center" />
+                    </Grid>
+                </Border>
             </Grid>
 
             <!-- License details -->
