@@ -73,6 +73,15 @@ namespace PdfCombiner.ViewModel
                     Uri = "https://www.syncfusion.com/products/communitylicense",
                     LicenseType = "Community License",
                     LicenseText = GetLicenseTextFromResources("Syncfusion")
+                },
+                new ThirdPartyLicenseBinding
+                {
+                    Name = "Newtonsoft.Json",
+                    Author = "James Newton-King",
+                    Version = new Version(13, 0, 1),
+                    Uri = "https://www.newtonsoft.com/json",
+                    LicenseType = "MIT",
+                    LicenseText = GetLicenseTextFromResources("Newtonsoft.Json")
                 }
             }.OrderBy(l => l.Name);
         }
