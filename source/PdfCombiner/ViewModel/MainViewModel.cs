@@ -125,6 +125,9 @@ namespace PdfCombiner.ViewModel
         public DelegateCommand OpenGithubRepoCommand => _openGithubRepoCommand ?? (_openGithubRepoCommand = new DelegateCommand(OpenGithubRepo));
         private DelegateCommand _openGithubRepoCommand;
 
+        /// <summary>
+        ///     Command to display the third party licenses used by this software
+        /// </summary>
         public DelegateCommand ShowThirdPartyLicensesCommand => _showThirdPartyLicensesCommand ?? (_showThirdPartyLicensesCommand = new DelegateCommand(ShowThirdPartyLicenses));
         private DelegateCommand _showThirdPartyLicensesCommand;
 
@@ -239,7 +242,7 @@ namespace PdfCombiner.ViewModel
                 }
             }
         }
-
+        
         private async Task AddFile()
         {
             var fileDlg = new OpenFileDialog
@@ -298,7 +301,12 @@ namespace PdfCombiner.ViewModel
         {
             var finalDoc = new PdfDocument();
 
-            PdfDocumentBase.Merge(finalDoc, files);
+            var mergeOptions = new PdfMergeOptions
+            {
+                OptimizeResources = App.Configuration.OptimizeResourcesWhileMerging
+            };
+
+            PdfDocumentBase.Merge(finalDoc, mergeOptions, files.ToArray<object>());
 
             finalDoc.Save(target);
             finalDoc.Close(true);
@@ -306,7 +314,7 @@ namespace PdfCombiner.ViewModel
 
         private void Settings()
         {
-
+            new SettingsWindow().ShowDialog();
         }
 
         private void OpenGithubRepo()

@@ -143,18 +143,27 @@
     <Compile Include="Helper\TextBlockUtils.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\GetReadable.cs" />
+    <Compile Include="Model\CombinerConfig.cs" />
     <Compile Include="Model\FileBinding.cs" />
+    <Compile Include="Model\LanguageBinding.cs" />
     <Compile Include="Model\ThirdPartyLicenseBinding.cs" />
     <Compile Include="Resources\FontAwesomeImages.cs" />
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThirdPartyLicensesWindow.xaml.cs">
       <DependentUpon>ThirdPartyLicensesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyLicensesViewModel.cs" />
+    <Compile Include="Wpf\CombinerConstants.cs" />
+    <Compile Include="Wpf\Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\GetReadableFileSizeConverter.cs" />
     <Compile Include="Wpf\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\StringNotEmptyToVisibilityConverter.cs" />
     <Compile Include="Wpf\Services\SfDataGridService.cs" />
+    <Compile Include="Wpf\Services\WindowService.cs" />
     <Compile Include="Wpf\StaticCommands.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +198,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

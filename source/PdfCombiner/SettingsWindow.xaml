@@ -1,0 +1,106 @@
+﻿<sf:ChromelessWindow x:Class="PdfCombiner.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sf="http://schemas.syncfusion.com/wpf"
+        xmlns:viewModel="clr-namespace:PdfCombiner.ViewModel"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:services="clr-namespace:PdfCombiner.Wpf.Services"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:wpf="clr-namespace:PdfCombiner.Wpf"
+        sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
+        mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize"
+        Icon="Resources/Images/pdf_single.ico" Title="Settings" WindowStartupLocation="CenterOwner"
+        Height="245" Width="600" x:Name="WindowInstance">
+
+    <sf:ChromelessWindow.DataContext>
+        <viewModel:SettingsViewModel />
+    </sf:ChromelessWindow.DataContext>
+
+    <dxmvvm:Interaction.Behaviors>
+        <services:WindowService Window="{Binding ElementName=WindowInstance, Mode=OneWay}" />
+    </dxmvvm:Interaction.Behaviors>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="General settings" Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Language -->
+                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Language" />
+                <sf:ComboBoxAdv Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
+                                ItemsSource="{Binding Path=AvailableLanguages, Mode=OneWay}"
+                                SelectedItem="{Binding Path=SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Image Grid.Column="4" Grid.Row="0" VerticalAlignment="Center" Source="{fa:IconSource CircleExclamation, Foreground=Orange, Size=16, IconFont=Solid}"
+                       Visibility="{Binding Path=ShowLanguageChangedHint, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
+                       ToolTip="Restart required to apply the language change!" />
+
+                <!-- Optimize resources -->
+                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="Optimize resources?" />
+                <CheckBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+                          IsChecked="{Binding Path=OptimizeResources, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="Information" Padding="5">
+            <StackPanel>
+                <TextBlock>
+                    <Run Text="Version" />
+                    <Run Text="{Binding Path=CurrentVersion, Mode=OneWay}" />
+                    <Run Text=" | " />
+                    <Run Text="Released under" />
+                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryLicense}">
+                        <TextBlock Text="MIT license" />
+                    </Hyperlink>
+                    <Run Text="- idea by" />
+                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.AuthorWebsite}">
+                        <TextBlock Text="Florian Berger" />
+                    </Hyperlink><Run Text="." />
+                </TextBlock>
+
+                <TextBlock Margin="0 10 0 0">
+                    <Run Text="Feel free to contribute in the" />
+                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryUri}">
+                        <TextBlock Text="GitHub repository" />
+                    </Hyperlink><Run Text="." />
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" HorizontalAlignment="Left" Content="Show third party licenses" Padding="10 3"
+                    Command="{Binding Path=ShowThirdPartyLicensesCommand, Mode=OneTime}" />
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Padding="10 3" Content="Save" Command="{Binding Path=SaveCommand, Mode=OneTime}" />
+                <Button Padding="10 3" Content="Cancel" Margin="5 0 0 0" Command="{Binding Path=CancelCommand, Mode=OneTime}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</sf:ChromelessWindow>
