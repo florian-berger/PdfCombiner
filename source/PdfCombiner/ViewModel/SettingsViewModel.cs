@@ -242,14 +242,6 @@ namespace PdfCombiner.ViewModel
             _optimizeFonts = App.Configuration.OptimizeFonts;
             _optimizeContents = App.Configuration.OptimizePageContents;
 
-            //new PdfCompressionOptions
-            //{
-            //    CompressImages = true,
-            //    ImageQuality = 100,
-            //    OptimizeFont = true,
-            //    OptimizePageContents = true
-            //};
-
             IsGeneralSelected = true;
         }
 

@@ -1,5 +1,8 @@
 ﻿namespace PdfCombiner.Wpf
 {
+    /// <summary>
+    ///     Class containing all constants
+    /// </summary>
     public static class CombinerConstants
     {
         /// <summary>

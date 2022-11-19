@@ -1,7 +1,14 @@
 ﻿namespace PdfCombiner.Helper
 {
+    /// <summary>
+    ///     Returns a user readable text
+    /// </summary>
     internal static class GetReadable
     {
+        /// <summary>
+        ///     Returns a user readable file size
+        /// </summary>
+        /// <param name="bytes">Number of bytes that should be made readable</param>
         public static string FileSize(long bytes)
         {
             string[] sizes = { "B", "KB", "MB", "GB", "TB" };

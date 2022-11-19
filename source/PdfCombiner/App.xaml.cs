@@ -15,6 +15,9 @@ namespace PdfCombiner
     {
         #region Events
 
+        /// <summary>
+        ///     Event that is triggered when the configuration was changed
+        /// </summary>
         public static event EventHandler ConfigurationChanged;
 
         #endregion Events
@@ -30,6 +33,9 @@ namespace PdfCombiner
 
         #region Constructor
 
+        /// <summary>
+        ///     Constructor of the main app
+        /// </summary>
         public App()
         {
 #if DEBUG
@@ -43,6 +49,7 @@ namespace PdfCombiner
 
         #region Overrides
 
+        /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

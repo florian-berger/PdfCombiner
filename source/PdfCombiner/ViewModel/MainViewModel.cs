@@ -10,8 +10,11 @@ using PdfCombiner.Helper;
 using PdfCombiner.Model;
 using PdfCombiner.Resources.Language;
 using PdfCombiner.Wpf;
+using PdfCombiner.Wpf.Controls;
+using PdfCombiner.Wpf.Extensions;
 using PdfCombiner.Wpf.Services;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Parsing;
 using Syncfusion.Pdf.Security;
 using Syncfusion.UI.Xaml.Grid;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
@@ -204,11 +207,25 @@ namespace PdfCombiner.ViewModel
 
             var targetFile = targetFileDlg.FileName;
 
+            var encryptionPassword = "";
+            if (IsEncryptionActive)
+            {
+                var password = InputDialog.ShowPasswordDialog(Application.Current.MainWindow,
+                    MainWindowResource.EnterPasswordTitle, MainWindowResource.EnterPasswordDescription);
+
+                if (password.IsCanceled || string.IsNullOrWhiteSpace(password.Value))
+                {
+                    return;
+                }
+
+                encryptionPassword = password.Value;
+            }
+
             IsWorking = true;
             try
             {
                 await Task.Run(() =>
-                    ExecuteCombination(targetFile, Files.Select(f => f.FileLocation).ToArray()));
+                    ExecuteCombination(targetFile, Files.Select(f => f.FileLocation).ToArray(), encryptionPassword));
             }
             catch (Exception ex)
             {
@@ -291,7 +308,7 @@ namespace PdfCombiner.ViewModel
             SelectedFiles.Clear();
         }
 
-        private void ExecuteCombination(string target, string[] files)
+        private void ExecuteCombination(string target, string[] files, string encryptionPassword = "")
         {
             var finalDoc = new PdfDocument();
 
@@ -301,9 +318,27 @@ namespace PdfCombiner.ViewModel
             };
 
             PdfDocumentBase.Merge(finalDoc, mergeOptions, files.ToArray<object>());
-
+            
             finalDoc.Save(target);
             finalDoc.Close(true);
+
+            if (IsEncryptionActive || IsCompressionActive)
+            {
+                var loadedPdf = new PdfLoadedDocument(target);
+
+                if (IsCompressionActive)
+                {
+                    loadedPdf.SetEncryptionInfo(encryptionPassword);
+                }
+
+                if (IsEncryptionActive)
+                {
+                    loadedPdf.SetCompressionInfo();
+                }
+
+                loadedPdf.Save();
+                loadedPdf.Close(true);
+            }
         }
 
         private void Settings()

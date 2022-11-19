@@ -24,8 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\PdfCombiner.xml</DocumentationFile>
+    <WarningsAsErrors>1570,1571,1572,1573,1587,1591</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -158,6 +158,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Language\InputDialogResources.Designer.cs">
+      <DependentUpon>InputDialogResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Language\MainWindowResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,11 +188,15 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyLicensesViewModel.cs" />
     <Compile Include="Wpf\CombinerConstants.cs" />
+    <Compile Include="Wpf\Controls\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wpf\Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\BoolYesNoConverter.cs" />
     <Compile Include="Wpf\Converters\GetReadableFileSizeConverter.cs" />
     <Compile Include="Wpf\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\StringNotEmptyToVisibilityConverter.cs" />
+    <Compile Include="Wpf\Extensions\PdfDocumentExtensions.cs" />
     <Compile Include="Wpf\Services\SfDataGridService.cs" />
     <Compile Include="Wpf\Services\WindowService.cs" />
     <Compile Include="Wpf\StaticCommands.cs" />
@@ -218,6 +227,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\InputDialogResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InputDialogResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\InputDialogResources.de.resx" />
     <EmbeddedResource Include="Resources\Language\MainWindowResource.de.resx" />
     <EmbeddedResource Include="Resources\Language\MainWindowResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -253,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ThirdPartyLicensesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wpf\Controls\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

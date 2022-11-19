@@ -60,6 +60,10 @@ namespace PdfCombiner.Model
 
         #region Public methods
 
+        /// <summary>
+        ///     Creates a file binding and setting all information
+        /// </summary>
+        /// <param name="fileName">File inclusive path the binding should be created for</param>
         public static async Task<FileBinding> Create(string fileName)
         {
             var isValidPdfFile = await FileHelper.IsFilePdfFile(fileName);
@@ -78,6 +82,7 @@ namespace PdfCombiner.Model
 
         #region Overrides
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return FileName;

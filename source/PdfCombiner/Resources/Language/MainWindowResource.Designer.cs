@@ -178,6 +178,24 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter the password you want to use for encryption..
+        /// </summary>
+        public static string EnterPasswordDescription {
+            get {
+                return ResourceManager.GetString("EnterPasswordDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter password.
+        /// </summary>
+        public static string EnterPasswordTitle {
+            get {
+                return ResourceManager.GetString("EnterPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error while combining the configured PDF files:.
         /// </summary>
         public static string ErrorCombiningDescription {

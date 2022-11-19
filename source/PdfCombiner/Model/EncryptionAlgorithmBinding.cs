@@ -34,6 +34,7 @@ namespace PdfCombiner.Model
 
         #region Overrides
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"{DisplayName} ({Algorithm})";
@@ -43,6 +44,9 @@ namespace PdfCombiner.Model
 
         #region Public methods
 
+        /// <summary>
+        ///     Returns the translated name for <see cref="PdfEncryptionAlgorithm" />
+        /// </summary>
         public static string GetTranslatedName(PdfEncryptionAlgorithm algorithm)
         {
             var languageProperty = typeof(SettingsResource).GetProperty($"PdfEncryption_Algorithm_{algorithm}");

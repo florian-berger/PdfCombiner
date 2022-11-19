@@ -199,4 +199,10 @@
   <data name="PdfSettings" xml:space="preserve">
     <value>PDF settings</value>
   </data>
+  <data name="EnterPasswordTitle" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="EnterPasswordDescription" xml:space="preserve">
+    <value>Please enter the password you want to use for encryption.</value>
+  </data>
 </root>
