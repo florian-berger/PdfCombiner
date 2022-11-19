@@ -87,20 +87,20 @@
                             <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Path=SelectedLicense.Name, Mode=OneWay}" VerticalAlignment="Center"
                                helper:TextBlockUtils.AutoTooltip="True" />
                             <Button Grid.Column="1" Content="{x:Static lang:ThirdPartyLicensesResource.LicenseOpenWebsite}" Padding="10 3" VerticalAlignment="Center" 
-                            Visibility="{Binding Path=SelectedLicense.Uri, Mode=OneWay, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"
-                            Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{Binding Path=SelectedLicense.Uri, Mode=OneWay}" />
+                                    Visibility="{Binding Path=SelectedLicense.Uri, Mode=OneWay, Converter={StaticResource StringNotEmptyToVisibilityConverter}}"
+                                    Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{Binding Path=SelectedLicense.Uri, Mode=OneWay}" />
                         </Grid>
 
                         <Grid Grid.Row="1" Margin="0 5 0 0">
                             <TextBlock TextWrapping="Wrap">
-                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseVersion}" />
-                        <Run Text="{Binding Path=SelectedLicense.Version, Mode=OneWay}" />
-                        <Run Text=" | "></Run>
-                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseLicense}" />
-                        <Run Text="{Binding Path=SelectedLicense.LicenseType, Mode=OneWay}" />
-                        <Run Text=" | " />
-                        <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseAuthor}" />
-                        <Run Text="{Binding Path=SelectedLicense.Author, Mode=OneWay}" />
+                                <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseVersion}" />
+                                <Run Text="{Binding Path=SelectedLicense.Version, Mode=OneWay}" />
+                                <Run Text=" | "></Run>
+                                <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseLicense}" />
+                                <Run Text="{Binding Path=SelectedLicense.LicenseType, Mode=OneWay}" />
+                                <Run Text=" | " />
+                                <Run FontWeight="SemiBold" Text="{x:Static lang:ThirdPartyLicensesResource.LicenseAuthor}" />
+                                <Run Text="{Binding Path=SelectedLicense.Author, Mode=OneWay}" />
                             </TextBlock>
                         </Grid>
 
@@ -112,9 +112,9 @@
 
                             <TextBlock Text="{x:Static lang:ThirdPartyLicensesResource.LicenseLicenseText}" FontWeight="Medium" FontSize="15" />
                             <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 5 0 0" IsReadOnly="True"
-                             IsReadOnlyCaretVisible="True" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"
-                             VerticalScrollBarVisibility="Auto"
-                             Text="{Binding Path=SelectedLicense.LicenseText, Mode=OneWay}"  />
+                                     IsReadOnlyCaretVisible="True" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Text="{Binding Path=SelectedLicense.LicenseText, Mode=OneWay}"  />
                         </Grid>
 
                     </Grid>
