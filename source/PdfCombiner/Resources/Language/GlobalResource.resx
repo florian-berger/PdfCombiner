@@ -97,106 +97,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>PDF combiner</value>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="RibbonTabHome" xml:space="preserve">
-    <value>HOME</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
-  <data name="RibbonGroupActions" xml:space="preserve">
-    <value>Actions</value>
-  </data>
-  <data name="RibbonItemGenerate" xml:space="preserve">
-    <value>Generate</value>
-  </data>
-  <data name="RibbonItemAddFile" xml:space="preserve">
-    <value>Add files</value>
-  </data>
-  <data name="RibbonItemRemoveFile" xml:space="preserve">
-    <value>Remove files</value>
-  </data>
-  <data name="RibbonItemClearFiles" xml:space="preserve">
-    <value>Clear files</value>
-  </data>
-  <data name="RibbonGroupExtra" xml:space="preserve">
-    <value>Extras</value>
-  </data>
-  <data name="RibbonItemSettings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="RibbonItemSource" xml:space="preserve">
-    <value>Source code</value>
-  </data>
-  <data name="RibbonItemThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
-  </data>
-  <data name="FilesDescription" xml:space="preserve">
-    <value>Add all PDFs you want to combine. You can re-order them by using drag and drop.</value>
-  </data>
-  <data name="ColumnFileName" xml:space="preserve">
-    <value>File name</value>
-  </data>
-  <data name="ColumnFileSize" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="ColumnValidPdf" xml:space="preserve">
-    <value>Valid PDF?</value>
-  </data>
-  <data name="CannotCombineTitle" xml:space="preserve">
-    <value>Combining not possible</value>
-  </data>
-  <data name="ErrorCombiningTitle" xml:space="preserve">
-    <value>Error while combining</value>
-  </data>
-  <data name="InvalidFilesExisting" xml:space="preserve">
-    <value>There are files defined that are no valid PDF files. Please remove them and try again.</value>
-  </data>
-  <data name="PdfFilter" xml:space="preserve">
-    <value>Portable Document Format (*.pdf)|*.pdf</value>
-  </data>
-  <data name="SelectTargetFile" xml:space="preserve">
-    <value>Select the target file …</value>
-  </data>
-  <data name="ErrorCombiningDescription" xml:space="preserve">
-    <value>There was an error while combining the configured PDF files:</value>
-  </data>
-  <data name="SuccessfullyMergedTitle" xml:space="preserve">
-    <value>Successfully merged</value>
-  </data>
-  <data name="SuccessfullyMergedDescription" xml:space="preserve">
-    <value>The PDF files were successfully merged. Do you want to open it in the default program?</value>
-  </data>
-  <data name="SelectFiles" xml:space="preserve">
-    <value>Select PDF files …</value>
-  </data>
-  <data name="AddFilesFilter" xml:space="preserve">
-    <value>Portable Document Format (*.pdf)|*.pdf|All files (*.*)|*.*</value>
-  </data>
-  <data name="EncryptionKeySize" xml:space="preserve">
-    <value>Key size</value>
-  </data>
-  <data name="EncryptionAlgorithm" xml:space="preserve">
-    <value>Algorithm</value>
-  </data>
-  <data name="CompressionImages" xml:space="preserve">
-    <value>Images</value>
-  </data>
-  <data name="CompressionPageContents" xml:space="preserve">
-    <value>Content</value>
-  </data>
-  <data name="CompressionFonts" xml:space="preserve">
-    <value>Fonts</value>
-  </data>
-  <data name="CompressionResources" xml:space="preserve">
-    <value>Resources</value>
-  </data>
-  <data name="CompressionTitle" xml:space="preserve">
-    <value>Compression:</value>
-  </data>
-  <data name="EncryptionTitle" xml:space="preserve">
-    <value>Encryption:</value>
-  </data>
-  <data name="PdfSettings" xml:space="preserve">
-    <value>PDF settings</value>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
 </root>

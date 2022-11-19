@@ -13,7 +13,7 @@
         sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
         mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize"
         Icon="Resources/Images/pdf_single.ico" WindowStartupLocation="CenterOwner"
-        Height="245" Width="500" x:Name="WindowInstance"
+        Height="260" Width="500" x:Name="WindowInstance"
         Title="{x:Static lang:SettingsResource.WindowTitle}">
 
     <sf:ChromelessWindow.DataContext>
@@ -24,75 +24,8 @@
         <services:WindowService Window="{Binding ElementName=WindowInstance, Mode=OneWay}" />
     </dxmvvm:Interaction.Behaviors>
 
-    <Grid Margin="12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <GroupBox Grid.Row="0" Header="{x:Static lang:SettingsResource.GroupGeneral}" Padding="5">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <!-- Language -->
-                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.Language}" />
-
-                    <Image VerticalAlignment="Center" Source="{fa:IconSource TriangleExclamation, Foreground=Orange, Size=16, IconFont=Solid}"
-                           Visibility="{Binding Path=ShowLanguageChangedHint, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
-                           ToolTip="{x:Static lang:SettingsResource.LanguageRestartHint}" Margin="5 0 0 0" />
-                </StackPanel>
-                <sf:ComboBoxAdv Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
-                                ItemsSource="{Binding Path=AvailableLanguages, Mode=OneWay}"
-                                SelectedItem="{Binding Path=SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                <!-- Optimize resources -->
-                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.OptimizeResources}" />
-                <CheckBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
-                          IsChecked="{Binding Path=OptimizeResources, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            </Grid>
-        </GroupBox>
-
-        <GroupBox Grid.Row="2" Header="{x:Static lang:SettingsResource.GroupInformation}" Padding="5">
-            <StackPanel>
-                <TextBlock TextWrapping="Wrap">
-                    <Run Text="{x:Static lang:SettingsResource.Version}" />
-                    <Run Text="{Binding Path=CurrentVersion, Mode=OneWay}" />
-                    <Run Text=" | " />
-                    <Run Text="{x:Static lang:SettingsResource.ReleasedUnder}" />
-                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryLicense}">
-                        <TextBlock Text="{x:Static lang:SettingsResource.MitLicense}" />
-                    </Hyperlink>
-                    <Run Text="-" />
-                    <Run Text="{x:Static lang:SettingsResource.IdeaBy}"></Run>
-                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.AuthorWebsite}">
-                        <TextBlock Text="Florian Berger" />
-                    </Hyperlink><Run Text="." />
-                </TextBlock>
-
-                <TextBlock Margin="0 10 0 0">
-                    <Run Text="{x:Static lang:SettingsResource.Contribute}" />
-                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryUri}">
-                        <TextBlock Text="{x:Static lang:SettingsResource.GithubRepo}" />
-                    </Hyperlink>
-                </TextBlock>
-            </StackPanel>
-        </GroupBox>
-
-        <Grid Grid.Row="4">
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom" Margin="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -106,5 +39,185 @@
                 <Button Padding="10 3" Content="{x:Static lang:SettingsResource.Cancel}" Margin="5 0 0 0" Command="{Binding Path=CancelCommand, Mode=OneTime}" />
             </StackPanel>
         </Grid>
-    </Grid>
+
+        <sf:SfNavigationDrawer DisplayMode="Expanded" IsToggleButtonVisible="False" ExpandedModeWidth="150">
+            <sf:NavigationItem Header="{x:Static lang:SettingsResource.TabGeneral}" IsSelected="{Binding Path=IsGeneralSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Icon="{fa:Icon Gears, IconFont=Solid}" />
+            <sf:NavigationItem Header="{x:Static lang:SettingsResource.TabSecurity}" IsSelected="{Binding Path=IsSecuritySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Icon="{fa:Icon Lock, IconFont=Solid}" />
+            <sf:NavigationItem Header="{x:Static lang:SettingsResource.TabCompression}" IsSelected="{Binding Path=IsCompressionSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Icon="{fa:Icon Minimize, IconFont=Solid}" />
+            <sf:NavigationItem Header="{x:Static lang:SettingsResource.TabAbout}" IsSelected="{Binding Path=IsAboutSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Icon="{fa:Icon Info, IconFont=Solid}" />
+
+            <sf:SfNavigationDrawer.ContentView>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="12 5 5 5">
+                    <GroupBox Visibility="{Binding Path=IsGeneralSelected, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
+                              Header="{x:Static lang:SettingsResource.GroupGeneral}" Padding="5" FontSize="10">
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.Language}" />
+
+                                <Image VerticalAlignment="Center" Source="{fa:IconSource TriangleExclamation, Foreground=Orange, Size=16, IconFont=Solid}" Height="16" Width="16"
+                                       Visibility="{Binding Path=ShowLanguageChangedHint, Mode=OneWay, Converter={StaticResource BoolVisibilityHiddenConverter}}"
+                                       ToolTip="{x:Static lang:SettingsResource.LanguageRestartHint}" Margin="5 0 0 0" />
+                            </StackPanel>
+
+                            <sf:ComboBoxAdv Grid.Column="2" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
+                                            ItemsSource="{Binding Path=AvailableLanguages, Mode=OneWay}"
+                                            SelectedItem="{Binding Path=SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+                    </GroupBox>
+
+                    <Grid Visibility="{Binding Path=IsSecuritySelected, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}">
+                        <GroupBox Header="{x:Static lang:SettingsResource.Encryption}" Padding="5" FontSize="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.EncryptDocuments}" />
+                                <CheckBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=EncryptDocuments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.EncryptionAlgorithm}" />
+                                <sf:ComboBoxAdv Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
+                                                ItemsSource="{Binding Path=AvailableEncryptionAlgorithms, Mode=OneWay}"
+                                                SelectedItem="{Binding Path=SelectedEncryptionAlgorithm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsEnabled="{Binding Path=EncryptDocuments, Mode=OneWay}" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.EncryptionKeySize}" />
+                                <sf:ComboBoxAdv Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName" Padding="5" VerticalAlignment="Center"
+                                                ItemsSource="{Binding Path=AvailableEncryptionKeySizes, Mode=OneWay}"
+                                                SelectedItem="{Binding Path=SelectedKeySizeBinding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsEnabled="{Binding Path=EncryptDocuments, Mode=OneWay}" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+
+                    <Grid Visibility="{Binding Path=IsCompressionSelected, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}">
+                        <GroupBox Header="{x:Static lang:SettingsResource.Compression}" Padding="5" FontSize="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.OptimizeResources}" />
+                                <CheckBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=OptimizeResources, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionImages}" />
+                                <CheckBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=CompressImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionImageQuality}" />
+                                <sf:PercentTextBox Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" HorizontalContentAlignment="Right"
+                                                   PercentageSymbol="%" MinValue="5" MaxValue="100" GroupSeperatorEnabled="False" PercentDecimalDigits="0" PositiveForeground="White"
+                                                   IsScrollingOnCircle="True" ScrollInterval="1" IsEnabled="{Binding Path=CompressImages, Mode=OneWay}"
+                                                   PercentValue="{Binding Path=ImageQuality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <sf:PercentTextBox.Style>
+                                        <Style TargetType="{x:Type sf:PercentTextBox}">
+                                            <Setter Property="Background" Value="#323130" />
+
+                                            <Style.Triggers>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Foreground" Value="Gray" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </sf:PercentTextBox.Style>
+                                </sf:PercentTextBox>
+
+                                <TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeFonts}" />
+                                <CheckBox Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=OptimizeFonts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeContents}" />
+                                <CheckBox Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=OptimizeContents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+
+                    <Grid Visibility="{Binding Path=IsAboutSelected, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}">
+                        <GroupBox Header="{x:Static lang:SettingsResource.GroupInformation}" Padding="5" FontSize="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Static lang:SettingsResource.Version}" FontWeight="Bold" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=CurrentVersion, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static lang:SettingsResource.ReleasedUnder}" FontWeight="Bold" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryLicense}">
+                                        <TextBlock Text="{x:Static lang:SettingsResource.MitLicense}" />
+                                    </Hyperlink>
+                                </TextBlock>
+
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static lang:SettingsResource.IdeaBy}" FontWeight="Bold" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.AuthorWebsite}">
+                                        <TextBlock Text="Florian Berger" />
+                                    </Hyperlink>
+                                </TextBlock>
+
+                                <TextBlock Grid.Column="0" Grid.Row="6" Text="{x:Static lang:SettingsResource.Contribute}" FontWeight="Bold" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Hyperlink Command="{x:Static wpf:StaticCommands.OpenUriCommand}" CommandParameter="{x:Static wpf:CombinerConstants.RepositoryUri}">
+                                        <TextBlock Text="{x:Static lang:SettingsResource.GithubRepo}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+            </sf:SfNavigationDrawer.ContentView>
+        </sf:SfNavigationDrawer>
+    </DockPanel>
 </sf:ChromelessWindow>

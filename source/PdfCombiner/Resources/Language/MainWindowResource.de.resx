@@ -172,4 +172,31 @@
   <data name="AddFilesFilter" xml:space="preserve">
     <value>Portable Document Format (*.pdf)|*.pdf|Alle Dateien (*.*)|*.*</value>
   </data>
+  <data name="EncryptionKeySize" xml:space="preserve">
+    <value>Schlüssellänge</value>
+  </data>
+  <data name="EncryptionAlgorithm" xml:space="preserve">
+    <value>Algorithmus</value>
+  </data>
+  <data name="CompressionResources" xml:space="preserve">
+    <value>Ressourcen</value>
+  </data>
+  <data name="CompressionImages" xml:space="preserve">
+    <value>Bilder</value>
+  </data>
+  <data name="CompressionPageContents" xml:space="preserve">
+    <value>Inhalte</value>
+  </data>
+  <data name="CompressionFonts" xml:space="preserve">
+    <value>Schriftarten</value>
+  </data>
+  <data name="CompressionTitle" xml:space="preserve">
+    <value>Komprimierung:</value>
+  </data>
+  <data name="EncryptionTitle" xml:space="preserve">
+    <value>Verschlüsselung:</value>
+  </data>
+  <data name="PdfSettings" xml:space="preserve">
+    <value>PDF-Einstellungen</value>
+  </data>
 </root>

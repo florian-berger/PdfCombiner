@@ -70,11 +70,92 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feel free to contribute:.
+        ///   Looks up a localized string similar to Compression.
+        /// </summary>
+        public static string Compression {
+            get {
+                return ResourceManager.GetString("Compression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image quality.
+        /// </summary>
+        public static string CompressionImageQuality {
+            get {
+                return ResourceManager.GetString("CompressionImageQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compress images.
+        /// </summary>
+        public static string CompressionImages {
+            get {
+                return ResourceManager.GetString("CompressionImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optimize contents.
+        /// </summary>
+        public static string CompressionOptimizeContents {
+            get {
+                return ResourceManager.GetString("CompressionOptimizeContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optimize fonts.
+        /// </summary>
+        public static string CompressionOptimizeFonts {
+            get {
+                return ResourceManager.GetString("CompressionOptimizeFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feel free to contribute.
         /// </summary>
         public static string Contribute {
             get {
                 return ResourceManager.GetString("Contribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt documents.
+        /// </summary>
+        public static string EncryptDocuments {
+            get {
+                return ResourceManager.GetString("EncryptDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption.
+        /// </summary>
+        public static string Encryption {
+            get {
+                return ResourceManager.GetString("Encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algorithm.
+        /// </summary>
+        public static string EncryptionAlgorithm {
+            get {
+                return ResourceManager.GetString("EncryptionAlgorithm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key size.
+        /// </summary>
+        public static string EncryptionKeySize {
+            get {
+                return ResourceManager.GetString("EncryptionKeySize", resourceCulture);
             }
         }
         
@@ -142,11 +223,65 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Optimize PDF resources?.
+        ///   Looks up a localized string similar to Optimize resources.
         /// </summary>
         public static string OptimizeResources {
             get {
                 return ResourceManager.GetString("OptimizeResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES.
+        /// </summary>
+        public static string PdfEncryption_Algorithm_AES {
+            get {
+                return ResourceManager.GetString("PdfEncryption_Algorithm_AES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RC4.
+        /// </summary>
+        public static string PdfEncryption_Algorithm_RC4 {
+            get {
+                return ResourceManager.GetString("PdfEncryption_Algorithm_RC4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 128 bit.
+        /// </summary>
+        public static string PdfEncryption_KeySize_Key128Bit {
+            get {
+                return ResourceManager.GetString("PdfEncryption_KeySize_Key128Bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 256 bit.
+        /// </summary>
+        public static string PdfEncryption_KeySize_Key256Bit {
+            get {
+                return ResourceManager.GetString("PdfEncryption_KeySize_Key256Bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 256 bit (revision 6).
+        /// </summary>
+        public static string PdfEncryption_KeySize_Key256BitRevision6 {
+            get {
+                return ResourceManager.GetString("PdfEncryption_KeySize_Key256BitRevision6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 40 bit.
+        /// </summary>
+        public static string PdfEncryption_KeySize_Key40Bit {
+            get {
+                return ResourceManager.GetString("PdfEncryption_KeySize_Key40Bit", resourceCulture);
             }
         }
         
@@ -174,6 +309,42 @@ namespace PdfCombiner.Resources.Language {
         public static string ShowThirdPartyLicenses {
             get {
                 return ResourceManager.GetString("ShowThirdPartyLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string TabAbout {
+            get {
+                return ResourceManager.GetString("TabAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compression.
+        /// </summary>
+        public static string TabCompression {
+            get {
+                return ResourceManager.GetString("TabCompression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string TabGeneral {
+            get {
+                return ResourceManager.GetString("TabGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security.
+        /// </summary>
+        public static string TabSecurity {
+            get {
+                return ResourceManager.GetString("TabSecurity", resourceCulture);
             }
         }
         

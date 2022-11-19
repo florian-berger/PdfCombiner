@@ -73,6 +73,9 @@
     <Reference Include="Syncfusion.SfGrid.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfGrid.WPF.20.3.0.52\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfNavigationDrawer.WPF.20.3.0.52\lib\net46\Syncfusion.SfNavigationDrawer.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.20.3.0.52\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
     </Reference>
@@ -144,10 +147,17 @@
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\GetReadable.cs" />
     <Compile Include="Model\CombinerConfig.cs" />
+    <Compile Include="Model\EncryptionKeySizeBinding.cs" />
+    <Compile Include="Model\EncryptionAlgorithmBinding.cs" />
     <Compile Include="Model\FileBinding.cs" />
     <Compile Include="Model\LanguageBinding.cs" />
     <Compile Include="Model\ThirdPartyLicenseBinding.cs" />
     <Compile Include="Resources\FontAwesomeImages.cs" />
+    <Compile Include="Resources\Language\GlobalResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Language\MainWindowResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +184,7 @@
     <Compile Include="ViewModel\ThirdPartyLicensesViewModel.cs" />
     <Compile Include="Wpf\CombinerConstants.cs" />
     <Compile Include="Wpf\Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Wpf\Converters\BoolYesNoConverter.cs" />
     <Compile Include="Wpf\Converters\GetReadableFileSizeConverter.cs" />
     <Compile Include="Wpf\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\StringNotEmptyToVisibilityConverter.cs" />
@@ -202,6 +213,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\GlobalResource.de.resx" />
+    <EmbeddedResource Include="Resources\Language\GlobalResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Language\MainWindowResource.de.resx" />
     <EmbeddedResource Include="Resources\Language\MainWindowResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -211,6 +227,7 @@
     <EmbeddedResource Include="Resources\Language\SettingsResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.de.resx" />
     <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.resx">

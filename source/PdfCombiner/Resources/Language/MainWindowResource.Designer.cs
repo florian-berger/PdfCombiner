@@ -106,6 +106,78 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fonts.
+        /// </summary>
+        public static string CompressionFonts {
+            get {
+                return ResourceManager.GetString("CompressionFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        public static string CompressionImages {
+            get {
+                return ResourceManager.GetString("CompressionImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        public static string CompressionPageContents {
+            get {
+                return ResourceManager.GetString("CompressionPageContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string CompressionResources {
+            get {
+                return ResourceManager.GetString("CompressionResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compression:.
+        /// </summary>
+        public static string CompressionTitle {
+            get {
+                return ResourceManager.GetString("CompressionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Algorithm.
+        /// </summary>
+        public static string EncryptionAlgorithm {
+            get {
+                return ResourceManager.GetString("EncryptionAlgorithm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key size.
+        /// </summary>
+        public static string EncryptionKeySize {
+            get {
+                return ResourceManager.GetString("EncryptionKeySize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption:.
+        /// </summary>
+        public static string EncryptionTitle {
+            get {
+                return ResourceManager.GetString("EncryptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error while combining the configured PDF files:.
         /// </summary>
         public static string ErrorCombiningDescription {
@@ -147,6 +219,15 @@ namespace PdfCombiner.Resources.Language {
         public static string PdfFilter {
             get {
                 return ResourceManager.GetString("PdfFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF settings.
+        /// </summary>
+        public static string PdfSettings {
+            get {
+                return ResourceManager.GetString("PdfSettings", resourceCulture);
             }
         }
         

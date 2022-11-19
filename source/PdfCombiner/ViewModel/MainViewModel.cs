@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DevExpress.Mvvm;
@@ -11,6 +12,7 @@ using PdfCombiner.Resources.Language;
 using PdfCombiner.Wpf;
 using PdfCombiner.Wpf.Services;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Security;
 using Syncfusion.UI.Xaml.Grid;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
@@ -64,18 +66,9 @@ namespace PdfCombiner.ViewModel
         {
             Files = new AddRangeObservableCollection<FileBinding>();
             SelectedFiles = new AddRangeObservableCollection<FileBinding>();
-        }
 
-        private void SortItemSource(object sender, GridRowDroppedEventArgs e)
-        {
-            var grid = GridService?.GetGrid();
-            var orderedFiles = grid?.View?.Records?.Select(s => s.Data as FileBinding).Where(f => f != null).ToList();
-            if (orderedFiles == null || !orderedFiles.Any())
-            {
-                return;
-            }
-
-            Files.SetRange(orderedFiles);
+            App.ConfigurationChanged += AppConfigurationChanged;
+            RefreshConfigurationDisplay();
         }
 
         #endregion Constructor
@@ -326,6 +319,82 @@ namespace PdfCombiner.ViewModel
         private void ShowThirdPartyLicenses()
         {
             new ThirdPartyLicensesWindow().ShowDialog();
+        }
+
+        private void SortItemSource(object sender, GridRowDroppedEventArgs e)
+        {
+            var grid = GridService?.GetGrid();
+            var orderedFiles = grid?.View?.Records?.Select(s => s.Data as FileBinding).Where(f => f != null).ToList();
+            if (orderedFiles == null || !orderedFiles.Any())
+            {
+                return;
+            }
+
+            Files.SetRange(orderedFiles);
+        }
+
+        private void AppConfigurationChanged(object sender, EventArgs e)
+        {
+            RefreshConfigurationDisplay();
+        }
+
+        private void RefreshConfigurationDisplay()
+        {
+            RaisePropertiesChanged(nameof(IsEncryptionActive), nameof(EncryptionDetails),
+                nameof(IsCompressionActive), nameof(CompressionDetails));
+        }
+
+        /// <summary>
+        ///     Information if encryption is active
+        /// </summary>
+        public bool IsEncryptionActive => App.Configuration.EncryptDocuments;
+
+        /// <summary>
+        ///     Details about encryption
+        /// </summary>
+        public string EncryptionDetails
+        {
+            get
+            {
+                var encryptionAlgorithm =
+                    Enum.TryParse(App.Configuration.EncryptionAlgorithm, out PdfEncryptionAlgorithm algorithm)
+                        ? EncryptionAlgorithmBinding.GetTranslatedName(algorithm)
+                        : GlobalResource.Error.ToUpper();
+
+                var encryptionKeySize = Enum.TryParse(App.Configuration.EncryptionKeySize, out PdfEncryptionKeySize keySize)
+                    ? EncryptionKeySizeBinding.GetTranslatedName(keySize)
+                    : GlobalResource.Error.ToUpper();
+
+                return $" - {MainWindowResource.EncryptionAlgorithm}: {encryptionAlgorithm}{Environment.NewLine} - {MainWindowResource.EncryptionKeySize}: {encryptionKeySize}";
+            }
+        }
+
+        /// <summary>
+        ///     Information if compression is active
+        /// </summary>
+        public bool IsCompressionActive => App.Configuration.CompressImages || App.Configuration.OptimizePageContents ||
+                                           App.Configuration.OptimizeFonts || App.Configuration.OptimizeResourcesWhileMerging;
+
+        /// <summary>
+        ///     Details about the compression
+        /// </summary>
+        public string CompressionDetails
+        {
+            get
+            {
+                var imageCompression = $" - {MainWindowResource.CompressionImages}: {(App.Configuration.CompressImages ? GlobalResource.Yes : GlobalResource.No)}";
+                if (App.Configuration.CompressImages)
+                {
+                    imageCompression += $" ({App.Configuration.ImageQuality} %)";
+                }
+
+                var sb = new StringBuilder();
+                sb.AppendLine($" - {MainWindowResource.CompressionResources}: {(App.Configuration.OptimizeResourcesWhileMerging ? GlobalResource.Yes : GlobalResource.No)}");
+                sb.AppendLine(imageCompression);
+                sb.AppendLine($" - {MainWindowResource.CompressionPageContents}: {(App.Configuration.OptimizePageContents ? GlobalResource.Yes : GlobalResource.No)}");
+                sb.AppendLine($" - {MainWindowResource.CompressionFonts}: {(App.Configuration.OptimizeFonts ? GlobalResource.Yes : GlobalResource.No)}");
+                return sb.ToString();
+            }
         }
 
         #endregion Private methods
