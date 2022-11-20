@@ -13,7 +13,11 @@
              <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
              <converters:NotNullToVisibilityConverter x:Key="NullToVisibilityConverterInverted" Inverted="True" />
              <converters:StringNotEmptyToVisibilityConverter x:Key="StringNotEmptyToVisibilityConverter" />
+
              <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
+             <converters:BoolVisibilityConverter x:Key="BoolVisibilityHiddenConverter" HiddenInsteadOfCollapsed="True" />
+
+             <converters:BoolYesNoConverter x:Key="BoolYesNoConverter" />
          </ResourceDictionary>
     </Application.Resources>
 </Application>

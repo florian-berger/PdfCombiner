@@ -24,8 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\PdfCombiner.xml</DocumentationFile>
+    <WarningsAsErrors>1570,1571,1572,1573,1587,1591</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,6 +72,9 @@
     </Reference>
     <Reference Include="Syncfusion.SfGrid.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfGrid.WPF.20.3.0.52\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfNavigationDrawer.WPF.20.3.0.52\lib\net46\Syncfusion.SfNavigationDrawer.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.20.3.0.52\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
@@ -144,10 +147,22 @@
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\GetReadable.cs" />
     <Compile Include="Model\CombinerConfig.cs" />
+    <Compile Include="Model\EncryptionKeySizeBinding.cs" />
+    <Compile Include="Model\EncryptionAlgorithmBinding.cs" />
     <Compile Include="Model\FileBinding.cs" />
     <Compile Include="Model\LanguageBinding.cs" />
     <Compile Include="Model\ThirdPartyLicenseBinding.cs" />
     <Compile Include="Resources\FontAwesomeImages.cs" />
+    <Compile Include="Resources\Language\GlobalResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Language\InputDialogResources.Designer.cs">
+      <DependentUpon>InputDialogResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Language\MainWindowResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,10 +188,15 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ThirdPartyLicensesViewModel.cs" />
     <Compile Include="Wpf\CombinerConstants.cs" />
+    <Compile Include="Wpf\Controls\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wpf\Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Wpf\Converters\BoolYesNoConverter.cs" />
     <Compile Include="Wpf\Converters\GetReadableFileSizeConverter.cs" />
     <Compile Include="Wpf\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Wpf\Converters\StringNotEmptyToVisibilityConverter.cs" />
+    <Compile Include="Wpf\Extensions\PdfDocumentExtensions.cs" />
     <Compile Include="Wpf\Services\SfDataGridService.cs" />
     <Compile Include="Wpf\Services\WindowService.cs" />
     <Compile Include="Wpf\StaticCommands.cs" />
@@ -202,6 +222,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\GlobalResource.de.resx" />
+    <EmbeddedResource Include="Resources\Language\GlobalResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\InputDialogResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InputDialogResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\InputDialogResources.de.resx" />
     <EmbeddedResource Include="Resources\Language\MainWindowResource.de.resx" />
     <EmbeddedResource Include="Resources\Language\MainWindowResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -211,6 +241,7 @@
     <EmbeddedResource Include="Resources\Language\SettingsResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.de.resx" />
     <EmbeddedResource Include="Resources\Language\ThirdPartyLicensesResource.resx">
@@ -236,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ThirdPartyLicensesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wpf\Controls\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

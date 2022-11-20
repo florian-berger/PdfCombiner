@@ -12,18 +12,23 @@ namespace PdfCombiner.Resources
     /// </summary>
     internal static class FontAwesomeImages
     {
+        #region Properties
+
         /// <summary>
         ///     Green check mark
         /// </summary>
         internal static ImageSource ValidIcon => _validIcon ?? (_validIcon = BuildImageSource(IconChar.Check, Color.LightGreen));
         private static ImageSource _validIcon;
-            //IconChar.Check.ToBitmap(IconFont.Regular, color: Color.Green);
 
         /// <summary>
         ///     Red cross
         /// </summary>
         internal static ImageSource InvalidIcon => _invalidIcon ?? (_invalidIcon = BuildImageSource(IconChar.Xmark, Color.Red));
         private static ImageSource _invalidIcon;
+
+        #endregion Properties
+
+        #region Private methods
 
         private static ImageSource BuildImageSource(IconChar icon, Color color)
         {
@@ -44,5 +49,7 @@ namespace PdfCombiner.Resources
                 return image;
             }
         }
+
+        #endregion Private methods
     }
 }

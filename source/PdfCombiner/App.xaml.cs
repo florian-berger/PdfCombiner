@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 using PdfCombiner.Model;
+using Xceed.Wpf.Toolkit.Core.Converters;
 
 namespace PdfCombiner
 {
@@ -12,6 +13,15 @@ namespace PdfCombiner
     /// </summary>
     public partial class App
     {
+        #region Events
+
+        /// <summary>
+        ///     Event that is triggered when the configuration was changed
+        /// </summary>
+        public static event EventHandler ConfigurationChanged;
+
+        #endregion Events
+
         #region Properties
 
         /// <summary>
@@ -23,6 +33,9 @@ namespace PdfCombiner
 
         #region Constructor
 
+        /// <summary>
+        ///     Constructor of the main app
+        /// </summary>
         public App()
         {
 #if DEBUG
@@ -36,6 +49,7 @@ namespace PdfCombiner
 
         #region Overrides
 
+        /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -55,5 +69,17 @@ namespace PdfCombiner
         }
 
         #endregion Overrides
+
+        #region Internal methods
+
+        /// <summary>
+        ///     Raises the <see cref="ConfigurationChanged" /> event
+        /// </summary>
+        internal static void OnConfigurationChanged(object sender)
+        {
+            ConfigurationChanged?.Invoke(sender, EventArgs.Empty);
+        }
+
+        #endregion Internal methods
     }
 }

@@ -34,6 +34,7 @@
 
         #region Overrides
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"{DisplayName} ({Identifier})";

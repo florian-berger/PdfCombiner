@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using PdfCombiner.Helper;
+using Syncfusion.Pdf.Security;
 
 namespace PdfCombiner.Model
 {
@@ -41,6 +42,48 @@ namespace PdfCombiner.Model
         [JsonProperty(Order = 2)]
         public bool OptimizeResourcesWhileMerging { get; set; }
 
+        /// <summary>
+        ///     Information if PDF results should be encrypted after merging
+        /// </summary>
+        [JsonProperty(Order = 2)]
+        public bool EncryptDocuments { get; set; }
+
+        /// <summary>
+        ///     Algorithm the results should be encrypted with
+        /// </summary>
+        [JsonProperty(Order = 3)]
+        public string EncryptionAlgorithm { get; set; }
+
+        /// <summary>
+        ///     Key size the encryption should be executed with
+        /// </summary>
+        [JsonProperty(Order = 4)]
+        public string EncryptionKeySize { get; set; }
+
+        /// <summary>
+        ///     Information if images should be compressed
+        /// </summary>
+        [JsonProperty(Order = 5)]
+        public bool CompressImages { get; set; }
+
+        /// <summary>
+        ///     Information of the quality a compressed image should have
+        /// </summary>
+        [JsonProperty(Order = 6)]
+        public double ImageQuality { get; set; }
+
+        /// <summary>
+        ///     Information if fonts should be optimized
+        /// </summary>
+        [JsonProperty(Order = 7)]
+        public bool OptimizeFonts { get; set; }
+
+        /// <summary>
+        ///     Information if page contents should be optimized
+        /// </summary>
+        [JsonProperty(Order = 8)]
+        public bool OptimizePageContents { get; set; }
+
         #endregion Properties
 
         #region Public methods
@@ -57,7 +100,10 @@ namespace PdfCombiner.Model
                 var defaultConfig = new CombinerConfig
                 {
                     Language = SupportedLanguages[0],
-                    OptimizeResourcesWhileMerging = false
+                    OptimizeResourcesWhileMerging = false,
+                    EncryptDocuments = false,
+                    EncryptionAlgorithm = PdfEncryptionAlgorithm.AES.ToString(),
+                    EncryptionKeySize = PdfEncryptionKeySize.Key128Bit.ToString()
                 };
 
                 JsonFileHelper.SaveJsonFile(defaultConfig, fileName, true);
@@ -70,6 +116,16 @@ namespace PdfCombiner.Model
             if (SupportedLanguages.All(l => l != config.Language))
             {
                 config.Language = SupportedLanguages[0];
+            }
+
+            if (!Enum.TryParse(config.EncryptionAlgorithm, out PdfEncryptionAlgorithm _))
+            {
+                config.EncryptionAlgorithm = PdfEncryptionAlgorithm.AES.ToString();
+            }
+
+            if (!Enum.TryParse(config.EncryptionKeySize, out PdfEncryptionKeySize _))
+            {
+                config.EncryptionKeySize = PdfEncryptionKeySize.Key128Bit.ToString();
             }
 
             return config;

@@ -10,6 +10,7 @@
                  xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                  xmlns:services="clr-namespace:PdfCombiner.Wpf.Services"
                  xmlns:lang="clr-namespace:PdfCombiner.Resources.Language"
+                 xmlns:helper="clr-namespace:PdfCombiner.Helper"
                  Office2010Icon="Resources/Images/pdf_single.ico"
                  sf:SfSkinManager.Theme="{sf:SkinManagerExtension ThemeName=Office2019Black}"
                  mc:Ignorable="d" ShowHelpButton="False"
@@ -42,7 +43,6 @@
     </dxmvvm:Interaction.Behaviors>
 
     <DockPanel>
-        <!--<Button Content="Test" Command="{Binding Path=TestCommand, Mode=OneTime}" />-->
         <sf:Ribbon DockPanel.Dock="Top" LayoutMode="Normal" EnableSimplifiedLayoutMode="False" VerticalAlignment="Top" BackStage="{x:Null}" MinimizeButtonVisibility="Hidden">
             <!-- Hide the 'File' button for the not existing backstage -->
             <sf:Ribbon.BackStageButton>
@@ -94,22 +94,51 @@
             </sf:RibbonTab>
         </sf:Ribbon>
 
-        <DockPanel Margin="12">
-            <TextBlock Text="{x:Static lang:MainWindowResource.FilesDescription}" DockPanel.Dock="Top" TextWrapping="Wrap" />
+        <Grid Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <sf:SfDataGrid x:Name="FilesGrid" Style="{StaticResource FilesGridStyle}"
-                           ItemsSource="{Binding Path=Files, Mode=OneWay}">
-                <dxmvvm:Interaction.Behaviors>
-                    <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding Path=FilesGridSelectionChangedCommand, Mode=OneTime}" />
-                </dxmvvm:Interaction.Behaviors>
+            <DockPanel Grid.Column="0">
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="{x:Static lang:MainWindowResource.FilesDescription}" />
 
-                <sf:SfDataGrid.Columns>
-                    <sf:GridTextColumn HeaderText="{x:Static lang:MainWindowResource.ColumnFileName}" MappingName="FileName" ColumnSizer="Star" HorizontalHeaderContentAlignment="Left" />
-                    <sf:GridNumericColumn HeaderText="{x:Static lang:MainWindowResource.ColumnFileSize}" MappingName="FileSize" Width="75" TextAlignment="Right" HorizontalHeaderContentAlignment="Left"
-                                          DisplayBinding="{Binding Path=FileSize, Mode=OneWay, Converter={StaticResource FileSizeConverter}}" />
-                    <sf:GridImageColumn ImageWidth="24" HeaderText="{x:Static lang:MainWindowResource.ColumnValidPdf}" MappingName="ValidIcon" TextAlignment="Center" Width="75" />
-                </sf:SfDataGrid.Columns>
-            </sf:SfDataGrid>
-        </DockPanel>
+                <sf:SfDataGrid x:Name="FilesGrid" Style="{StaticResource FilesGridStyle}"
+                               ItemsSource="{Binding Path=Files, Mode=OneWay}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding Path=FilesGridSelectionChangedCommand, Mode=OneTime}" />
+                    </dxmvvm:Interaction.Behaviors>
+
+                    <sf:SfDataGrid.Columns>
+                        <sf:GridTextColumn HeaderText="{x:Static lang:MainWindowResource.ColumnFileName}" MappingName="FileName" ColumnSizer="Star" HorizontalHeaderContentAlignment="Left" />
+                        <sf:GridNumericColumn HeaderText="{x:Static lang:MainWindowResource.ColumnFileSize}" MappingName="FileSize" Width="75" TextAlignment="Right" HorizontalHeaderContentAlignment="Left"
+                                              DisplayBinding="{Binding Path=FileSize, Mode=OneWay, Converter={StaticResource FileSizeConverter}}" />
+                        <sf:GridImageColumn ImageWidth="24" HeaderText="{x:Static lang:MainWindowResource.ColumnValidPdf}" MappingName="ValidIcon" TextAlignment="Center" Width="75" />
+                    </sf:SfDataGrid.Columns>
+                </sf:SfDataGrid>
+            </DockPanel>
+
+            <GroupBox Grid.Column="1" Header="{x:Static lang:MainWindowResource.PdfSettings}" Margin="5 0 0 0">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock helper:TextBlockUtils.AutoTooltip="True">
+                        <Run Text="{x:Static lang:MainWindowResource.EncryptionTitle}" FontWeight="Bold" />
+                        <Run Text="{Binding Path=IsEncryptionActive, Mode=OneWay, Converter={StaticResource BoolYesNoConverter}}" />
+                    </TextBlock>
+
+                    <TextBlock Visibility="{Binding Path=IsEncryptionActive, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
+                               Text="{Binding Path=EncryptionDetails, Mode=OneWay}" helper:TextBlockUtils.AutoTooltip="True" />
+
+                    <Separator Margin="10" />
+
+                    <TextBlock helper:TextBlockUtils.AutoTooltip="True">
+                        <Run Text="{x:Static lang:MainWindowResource.CompressionTitle}" FontWeight="Bold" />
+                        <Run Text="{Binding Path=IsCompressionActive, Mode=OneWay, Converter={StaticResource BoolYesNoConverter}}" />
+                    </TextBlock>
+
+                    <TextBlock Visibility="{Binding Path=IsCompressionActive, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"
+                               Text="{Binding Path=CompressionDetails, Mode=OneWay}" helper:TextBlockUtils.AutoTooltip="True" />
+                </StackPanel>
+            </GroupBox>
+        </Grid>
     </DockPanel>
 </sf:RibbonWindow>

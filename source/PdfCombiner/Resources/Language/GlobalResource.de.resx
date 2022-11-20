@@ -97,112 +97,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>PDF-Kominierer</value>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
   </data>
-  <data name="RibbonTabHome" xml:space="preserve">
-    <value>START</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
-  <data name="RibbonGroupActions" xml:space="preserve">
-    <value>Aktionen</value>
-  </data>
-  <data name="RibbonItemThirdPartyLicenses" xml:space="preserve">
-    <value>Drittanbieterlizenzen</value>
-  </data>
-  <data name="FilesDescription" xml:space="preserve">
-    <value>Fügen Sie alle PDF-Dateien hinzu, die Sie kombinieren möchten. Sie können die Dateien mit Hilfe der Maus neu anordnen.</value>
-  </data>
-  <data name="RibbonItemSource" xml:space="preserve">
-    <value>Quellcode</value>
-  </data>
-  <data name="RibbonItemSettings" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="RibbonItemGenerate" xml:space="preserve">
-    <value>Generieren</value>
-  </data>
-  <data name="RibbonItemAddFile" xml:space="preserve">
-    <value>Dateien hinzufügen</value>
-  </data>
-  <data name="RibbonItemRemoveFile" xml:space="preserve">
-    <value>Dateien entfernen</value>
-  </data>
-  <data name="RibbonItemClearFiles" xml:space="preserve">
-    <value>Dateien leeren</value>
-  </data>
-  <data name="RibbonGroupExtra" xml:space="preserve">
-    <value>Extra</value>
-  </data>
-  <data name="ColumnFileSize" xml:space="preserve">
-    <value>Größe</value>
-  </data>
-  <data name="ColumnFileName" xml:space="preserve">
-    <value>Dateiname</value>
-  </data>
-  <data name="ColumnValidPdf" xml:space="preserve">
-    <value>PDF gültig?</value>
-  </data>
-  <data name="InvalidFilesExisting" xml:space="preserve">
-    <value>Es sind Dateien konfiguriert, die keine gültigen PDF-Dateien sind. Bitte entfernen Sie diese und versuchen es erneut.</value>
-  </data>
-  <data name="CannotCombineTitle" xml:space="preserve">
-    <value>Kombinieren nicht möglich</value>
-  </data>
-  <data name="ErrorCombiningTitle" xml:space="preserve">
-    <value>Fehler beim Kombinieren</value>
-  </data>
-  <data name="PdfFilter" xml:space="preserve">
-    <value>Portable Document Format (*.pdf)|*.pdf</value>
-  </data>
-  <data name="SelectTargetFile" xml:space="preserve">
-    <value>Ziel-Datei auswählen …</value>
-  </data>
-  <data name="ErrorCombiningDescription" xml:space="preserve">
-    <value>Beim Kombinieren der konfigurierten PDF-Dateien ist ein Fehler aufgetreten:</value>
-  </data>
-  <data name="SuccessfullyMergedTitle" xml:space="preserve">
-    <value>Erfolgreich kombiniert</value>
-  </data>
-  <data name="SuccessfullyMergedDescription" xml:space="preserve">
-    <value>Die PDF-Dateien wurden erfolgreich kombiniert. Möchten Sie die Datei im Standardprogramm öffnen?</value>
-  </data>
-  <data name="SelectFiles" xml:space="preserve">
-    <value>PDF-Dateien auswählen …</value>
-  </data>
-  <data name="AddFilesFilter" xml:space="preserve">
-    <value>Portable Document Format (*.pdf)|*.pdf|Alle Dateien (*.*)|*.*</value>
-  </data>
-  <data name="EncryptionKeySize" xml:space="preserve">
-    <value>Schlüssellänge</value>
-  </data>
-  <data name="EncryptionAlgorithm" xml:space="preserve">
-    <value>Algorithmus</value>
-  </data>
-  <data name="CompressionResources" xml:space="preserve">
-    <value>Ressourcen</value>
-  </data>
-  <data name="CompressionImages" xml:space="preserve">
-    <value>Bilder</value>
-  </data>
-  <data name="CompressionPageContents" xml:space="preserve">
-    <value>Inhalte</value>
-  </data>
-  <data name="CompressionFonts" xml:space="preserve">
-    <value>Schriftarten</value>
-  </data>
-  <data name="CompressionTitle" xml:space="preserve">
-    <value>Komprimierung:</value>
-  </data>
-  <data name="EncryptionTitle" xml:space="preserve">
-    <value>Verschlüsselung:</value>
-  </data>
-  <data name="PdfSettings" xml:space="preserve">
-    <value>PDF-Einstellungen</value>
-  </data>
-  <data name="EnterPasswordTitle" xml:space="preserve">
-    <value>Passwort eingeben</value>
-  </data>
-  <data name="EnterPasswordDescription" xml:space="preserve">
-    <value>Bitte geben Sie das Passwort ein, das Sie für die Verschlüsselung verwenden möchten.</value>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
   </data>
 </root>

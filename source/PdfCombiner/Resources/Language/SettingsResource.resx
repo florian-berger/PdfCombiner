@@ -113,7 +113,7 @@
     <value>Restart required to apply the language change.</value>
   </data>
   <data name="OptimizeResources" xml:space="preserve">
-    <value>Optimize PDF resources?</value>
+    <value>Optimize resources</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
@@ -128,7 +128,7 @@
     <value>idea by</value>
   </data>
   <data name="Contribute" xml:space="preserve">
-    <value>Feel free to contribute:</value>
+    <value>Feel free to contribute</value>
   </data>
   <data name="GithubRepo" xml:space="preserve">
     <value>GitHub repository</value>
@@ -141,5 +141,71 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="PdfEncryption_Algorithm_RC4" xml:space="preserve">
+    <value>RC4</value>
+  </data>
+  <data name="PdfEncryption_Algorithm_AES" xml:space="preserve">
+    <value>AES</value>
+  </data>
+  <data name="PdfEncryption_KeySize_Key40Bit" xml:space="preserve">
+    <value>40 bit</value>
+  </data>
+  <data name="PdfEncryption_KeySize_Key128Bit" xml:space="preserve">
+    <value>128 bit</value>
+  </data>
+  <data name="PdfEncryption_KeySize_Key256Bit" xml:space="preserve">
+    <value>256 bit</value>
+  </data>
+  <data name="PdfEncryption_KeySize_Key256BitRevision6" xml:space="preserve">
+    <value>256 bit (revision 6)</value>
+  </data>
+  <data name="Encryption" xml:space="preserve">
+    <value>Encryption</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
+    <value>Compression</value>
+  </data>
+  <data name="EncryptDocuments" xml:space="preserve">
+    <value>Encrypt documents</value>
+  </data>
+  <data name="EncryptionAlgorithm" xml:space="preserve">
+    <value>Algorithm</value>
+  </data>
+  <data name="EncryptionKeySize" xml:space="preserve">
+    <value>Key size</value>
+  </data>
+  <data name="CompressionImages" xml:space="preserve">
+    <value>Compress images</value>
+  </data>
+  <data name="CompressionImageQuality" xml:space="preserve">
+    <value>Image quality</value>
+  </data>
+  <data name="CompressionOptimizeFonts" xml:space="preserve">
+    <value>Optimize fonts</value>
+  </data>
+  <data name="CompressionOptimizeContents" xml:space="preserve">
+    <value>Optimize contents</value>
+  </data>
+  <data name="TabGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="TabSecurity" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="TabCompression" xml:space="preserve">
+    <value>Compression</value>
+  </data>
+  <data name="TabAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="CompressionImagesDescription" xml:space="preserve">
+    <value>Reduces the quality of images to the percentage entered below (100 % = unchanged)</value>
+  </data>
+  <data name="CompressionOptimizeFontsDescription" xml:space="preserve">
+    <value>Reduces the size of embedded fonts by removing all unused glyph data</value>
+  </data>
+  <data name="CompressionOptimizeContentsDescription" xml:space="preserve">
+    <value>Removes unwanted data from the pages like commented lines, white spaces, …</value>
   </data>
 </root>

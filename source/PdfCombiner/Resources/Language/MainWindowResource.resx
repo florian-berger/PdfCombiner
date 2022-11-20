@@ -172,4 +172,37 @@
   <data name="AddFilesFilter" xml:space="preserve">
     <value>Portable Document Format (*.pdf)|*.pdf|All files (*.*)|*.*</value>
   </data>
+  <data name="EncryptionKeySize" xml:space="preserve">
+    <value>Key size</value>
+  </data>
+  <data name="EncryptionAlgorithm" xml:space="preserve">
+    <value>Algorithm</value>
+  </data>
+  <data name="CompressionImages" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="CompressionPageContents" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="CompressionFonts" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
+  <data name="CompressionResources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="CompressionTitle" xml:space="preserve">
+    <value>Compression:</value>
+  </data>
+  <data name="EncryptionTitle" xml:space="preserve">
+    <value>Encryption:</value>
+  </data>
+  <data name="PdfSettings" xml:space="preserve">
+    <value>PDF settings</value>
+  </data>
+  <data name="EnterPasswordTitle" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="EnterPasswordDescription" xml:space="preserve">
+    <value>Please enter the password you want to use for encryption.</value>
+  </data>
 </root>
