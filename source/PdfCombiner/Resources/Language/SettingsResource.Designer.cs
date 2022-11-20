@@ -97,6 +97,15 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reduces the quality of images to the percentage entered below (100 % = unchanged).
+        /// </summary>
+        public static string CompressionImagesDescription {
+            get {
+                return ResourceManager.GetString("CompressionImagesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Optimize contents.
         /// </summary>
         public static string CompressionOptimizeContents {
@@ -106,11 +115,29 @@ namespace PdfCombiner.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Removes unwanted data from the pages like commented lines, white spaces, ….
+        /// </summary>
+        public static string CompressionOptimizeContentsDescription {
+            get {
+                return ResourceManager.GetString("CompressionOptimizeContentsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Optimize fonts.
         /// </summary>
         public static string CompressionOptimizeFonts {
             get {
                 return ResourceManager.GetString("CompressionOptimizeFonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reduces the size of embedded fonts by removing all unused glyph data.
+        /// </summary>
+        public static string CompressionOptimizeFontsDescription {
+            get {
+                return ResourceManager.GetString("CompressionOptimizeFontsDescription", resourceCulture);
             }
         }
         

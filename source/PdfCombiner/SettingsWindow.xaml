@@ -134,11 +134,16 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.OptimizeResources}" />
+                                <TextBlock  Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.OptimizeResources}" />
                                 <CheckBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"
                                           IsChecked="{Binding Path=OptimizeResources, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionImages}" />
+                                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionImages}" />
+                                    <Image Source="{fa:IconSource InfoCircle, Foreground=White, IconFont=Solid}" Height="14" Margin="5 0 0 0"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{x:Static lang:SettingsResource.CompressionImagesDescription}" />
+                                </StackPanel>
+                                
                                 <CheckBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"
                                           IsChecked="{Binding Path=CompressImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -160,11 +165,19 @@
                                     </sf:PercentTextBox.Style>
                                 </sf:PercentTextBox>
 
-                                <TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeFonts}" />
+                                <StackPanel Grid.Column="0" Grid.Row="6" Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeFonts}" />
+                                    <Image Source="{fa:IconSource InfoCircle, Foreground=White, IconFont=Solid}" Height="14" Margin="5 0 0 0"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{x:Static lang:SettingsResource.CompressionOptimizeFontsDescription}" />
+                                </StackPanel>
                                 <CheckBox Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right"
                                           IsChecked="{Binding Path=OptimizeFonts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                <TextBlock Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeContents}" />
+                                <StackPanel Grid.Column="0" Grid.Row="8" Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="{x:Static lang:SettingsResource.CompressionOptimizeContents}" />
+                                    <Image Source="{fa:IconSource InfoCircle, Foreground=White, IconFont=Solid}" Height="14" Margin="5 0 0 0"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{x:Static lang:SettingsResource.CompressionOptimizeContentsDescription}" />
+                                </StackPanel>
                                 <CheckBox Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"
                                           IsChecked="{Binding Path=OptimizeContents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>

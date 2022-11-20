@@ -199,4 +199,13 @@
   <data name="TabAbout" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="CompressionImagesDescription" xml:space="preserve">
+    <value>Reduces the quality of images to the percentage entered below (100 % = unchanged)</value>
+  </data>
+  <data name="CompressionOptimizeFontsDescription" xml:space="preserve">
+    <value>Reduces the size of embedded fonts by removing all unused glyph data</value>
+  </data>
+  <data name="CompressionOptimizeContentsDescription" xml:space="preserve">
+    <value>Removes unwanted data from the pages like commented lines, white spaces, …</value>
+  </data>
 </root>
