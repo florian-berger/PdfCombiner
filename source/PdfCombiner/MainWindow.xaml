@@ -120,7 +120,7 @@
 
             <GroupBox Grid.Column="1" Header="{x:Static lang:MainWindowResource.PdfSettings}" Margin="5 0 0 0">
                 <StackPanel Orientation="Vertical" Margin="5">
-                    <TextBlock>
+                    <TextBlock helper:TextBlockUtils.AutoTooltip="True">
                         <Run Text="{x:Static lang:MainWindowResource.EncryptionTitle}" FontWeight="Bold" />
                         <Run Text="{Binding Path=IsEncryptionActive, Mode=OneWay, Converter={StaticResource BoolYesNoConverter}}" />
                     </TextBlock>
@@ -130,7 +130,7 @@
 
                     <Separator Margin="10" />
 
-                    <TextBlock>
+                    <TextBlock helper:TextBlockUtils.AutoTooltip="True">
                         <Run Text="{x:Static lang:MainWindowResource.CompressionTitle}" FontWeight="Bold" />
                         <Run Text="{Binding Path=IsCompressionActive, Mode=OneWay, Converter={StaticResource BoolYesNoConverter}}" />
                     </TextBlock>
