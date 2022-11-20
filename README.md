@@ -9,7 +9,7 @@ Requires **.NET Framework 4.8** on Windows machines.
 
 ## Planned features
 - [x] Multi language
-- [ ] Extended Pdf functions
+- [x] Extended Pdf functions
 - [ ] MSI Setup
 - [ ] CLI solution
 - [ ] Rewrite for .NET 6
